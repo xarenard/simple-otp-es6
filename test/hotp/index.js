@@ -1,6 +1,6 @@
 'use strict';
 /* eslint-env mocha */
-import {Hotp} from '../../../lib';
+import {Hotp} from '../../lib';
 import {assert} from 'chai';
 const expectedTokens = [
 	['4c93cf18', 1284755224],

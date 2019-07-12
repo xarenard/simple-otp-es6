@@ -1,7 +1,7 @@
 'use strict';
 /* eslint-env mocha */
 
-import Totp from '../../../lib/totp';
+import Totp from '../../lib/totp';
 import {expect,assert} from 'chai';
 
 //const Totp = require('../../lib/totp/index.js');

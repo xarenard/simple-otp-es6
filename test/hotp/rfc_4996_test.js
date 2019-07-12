@@ -40,7 +40,7 @@
  *
  */
 
-import {Hotp} from '../../../lib';
+import {Hotp} from '../../lib';
 import {assert} from 'chai';
 
 const asciiSecret = '12345678901234567890';

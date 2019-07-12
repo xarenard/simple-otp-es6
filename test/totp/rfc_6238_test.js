@@ -55,9 +55,9 @@ The test token shared secret uses the ASCII string value
 							Table 1: TOTP Table
  */
 
-import Totp from '../../../lib/totp';
+import Totp from '../../lib/totp';
 import {assert} from 'chai';
-import DigestAlgorithms from '../../../lib/codec/digest';
+import DigestAlgorithms from '../../lib/codec/digest';
 
 const secret = '12345678901234567890';
 
