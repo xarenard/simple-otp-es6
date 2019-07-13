@@ -21,12 +21,12 @@ jobs:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: module-cache-{{ checksum "package.json" }}
       - run:
           name: npm install
           command: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: module-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       # build
