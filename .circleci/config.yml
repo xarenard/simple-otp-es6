@@ -29,7 +29,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-      # run tests!
+      # build
       - run:
           name: build
           command: npm run build
@@ -40,8 +40,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Test
-        command: npm test
+          name: Test
+          command: npm test
 
 workflows:
   version: 2
