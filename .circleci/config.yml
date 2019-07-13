@@ -37,8 +37,11 @@ jobs:
   test:
     docker:
       - image: circleci/node:8.11.1
+    working_directory: ~/repo
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Test
           command: npm test
