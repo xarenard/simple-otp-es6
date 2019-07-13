@@ -44,7 +44,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: module-cache-{{ checksum "package.json" }}
       - run:
           name: Test
           command: npm test
@@ -58,7 +58,7 @@ jobs:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: module-cache-{{ checksum "package.json" }}
       - run:
           name: Audit
           command: npm audit
