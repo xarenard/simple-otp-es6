@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/plugin-proposal-export-default-from": "^7.5.2",
-    "@babel/plugin-proposal-class-properties": "^7.5.0"
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2"
   },
   "scripts": {
     "start": "node ./bin/www",
@@ -18,7 +18,9 @@
     "clean": "rimraf dist",
     "clean-doc": "rimraf docs",
     "clean-all": "npm run clean && npm run clean-doc",
-    "dist": "npm run clean && npm run build && npm test && npm run lint && npm run build & cp package.json dist/ && cp README.md dist/"
+    "dist": "npm run clean && npm run build && npm test && npm run lint && npm run build & cp package.json dist/ && cp README.md dist/",
+    "audit": "./node_modules/.bin/audit-ci --config audit-ci.json"
+
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
@@ -26,6 +28,7 @@
     "@babel/node": "^7.5.0",
     "@babel/preset-env": "^7.5.4",
     "@babel/register": "^7.4.4",
+    "audit-ci": "^2.1.0",
     "babel-eslint": "^10.0.2",
     "chai": "^4.2.0",
     "eslint": "^6.0.1",

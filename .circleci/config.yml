@@ -48,6 +48,17 @@ jobs:
       - run:
           name: Test
           command: npm test
+  audit:
+    docker:
+      - image: circleci/node:8.11.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Audit
+          command: npm audit
 
 workflows:
   version: 2
@@ -62,3 +73,21 @@ workflows:
               only:
                 - master
                 - /features-.*/
+  build_test_audit:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+                - /features-.*/
+      - audit:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
