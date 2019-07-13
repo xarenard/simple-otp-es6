@@ -82,7 +82,7 @@ workflows:
           filters:
             branches:
               only:
-                - /master
+                - master
       - test:
           requires:
             - build
