@@ -58,7 +58,7 @@ jobs:
           key: module-cache-{{ .Branch }}
       - run:
           name: Audit
-          command: npm audit
+          command: npm run audit
 
 workflows:
   version: 2
