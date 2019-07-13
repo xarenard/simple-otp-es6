@@ -79,10 +79,10 @@ workflows:
   build_test_audit:
     jobs:
       - build:
-        filters:
-          branches:
-            only:
-              - /master
+          filters:
+            branches:
+              only:
+                - /master
       - test:
           requires:
             - build
