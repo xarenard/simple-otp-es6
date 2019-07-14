@@ -71,14 +71,14 @@ workflows:
           filters:
             branches:
               only:
-                - /features-.*/
+                - /^feature\/.*/
       - test:
           requires:
             - build
           filters:
             branches:
               only:
-                - /features-.*/
+                - /^feature\/.*/
   build_test_audit:
     jobs:
       - build:
