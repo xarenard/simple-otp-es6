@@ -62,16 +62,32 @@ jobs:
       - run:
           name: Audit
           command: npm run audit
+  prerelease:
+    docker:
+      - image: circleci/node:8.11.1
+      working_directory: ~/repo
+      steps:
+        - checkout
+        - run:
+            name: update-npm
+            command: 'sudo npm install -g npm@latest'
+        - restore_cache:
+            key: module-cache-{{ .Branch }}
+        - run:
+            name: Version prerelease
+            command: npm version prerelease
+
 
 workflows:
   version: 2
-  build_and_test:
+  develop:
     jobs:
       - build:
           filters:
             branches:
               only:
                 - /^feature\/.*/
+                - develop
       - test:
           requires:
             - build
@@ -79,13 +95,15 @@ workflows:
             branches:
               only:
                 - /^feature\/.*/
-  build_test_audit:
+                - develop
+  prerelease:
     jobs:
       - build:
           filters:
             branches:
               only:
                 - master
+                - /^release\/.*/
       - test:
           requires:
             - build
@@ -93,6 +111,7 @@ workflows:
             branches:
               only:
                 - master
+                - /^release\/.*/
       - audit:
           requires:
             - build
@@ -100,3 +119,14 @@ workflows:
             branches:
               only:
                 - master
+                - /^release\/.*/
+      - prerelease:
+          requires:
+            - test
+            - audit
+            - prerelease
+          filters:
+            branches:
+              only:
+                - master
+                - /^release\/.*/
