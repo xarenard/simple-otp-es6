@@ -119,11 +119,10 @@ workflows:
               only:
                 - master
                 - /^release\/.*/
-      - prerelease:
+      - prereleasejob:
           requires:
             - test
             - audit
-            - prereleasejob
           filters:
             branches:
               only:
