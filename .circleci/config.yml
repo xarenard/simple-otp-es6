@@ -65,18 +65,17 @@ jobs:
   prerelease:
     docker:
       - image: circleci/node:8.11.1
-      working_directory: ~/repo
-      steps:
-        - checkout
-        - run:
-            name: update-npm
-            command: 'sudo npm install -g npm@latest'
-        - restore_cache:
-            key: module-cache-{{ .Branch }}
-        - run:
-            name: Version prerelease
-            command: npm version prerelease
-
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: module-cache-{{ .Branch }}
+      - run:
+          name: Version prerelease
+          command: npm version prerelease
 
 workflows:
   version: 2
