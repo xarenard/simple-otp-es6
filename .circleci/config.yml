@@ -62,7 +62,7 @@ jobs:
       - run:
           name: Audit
           command: npm run audit
-  prerelease:
+  prereleasejob:
     docker:
       - image: circleci/node:8.11.1
     working_directory: ~/repo
@@ -123,7 +123,7 @@ workflows:
           requires:
             - test
             - audit
-            - prerelease
+            - prereleasejob
           filters:
             branches:
               only:
