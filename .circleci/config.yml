@@ -62,6 +62,7 @@ jobs:
       - run:
           name: Audit
           command: npm run audit
+
   deploy:
     docker:
       - image: circleci/node:8.11.1
@@ -74,7 +75,12 @@ jobs:
       - restore_cache:
           key: module-cache-{{ .Branch }}
       - run:
-          name: Version prerelease
+          name: configure git builder
+          command: |
+            git config --global user.email $PROJECT_GIT_BUILDER
+            git config --global user.name $PROJECT_GIT_NAME
+      - run:
+          name: Version release
           command: npm version from-git
 
 workflows:
@@ -119,13 +125,37 @@ workflows:
               only:
                 - master
                 - /^release\/.*/
-      - prereleasejob:
+
+  deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+      - test:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+      - audit:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+      - deploy:
           requires:
             - test
             - audit
           filters:
             branches:
-              only:
-                - master
-                - /^release\/.*/
-
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
