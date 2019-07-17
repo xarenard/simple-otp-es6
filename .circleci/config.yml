@@ -62,7 +62,7 @@ jobs:
       - run:
           name: Audit
           command: npm run audit
-  prereleasejob:
+  deploy:
     docker:
       - image: circleci/node:8.11.1
     working_directory: ~/repo
@@ -75,7 +75,7 @@ jobs:
           key: module-cache-{{ .Branch }}
       - run:
           name: Version prerelease
-          command: npm version prerelease
+          command: npm version from-git
 
 workflows:
   version: 2
@@ -128,3 +128,4 @@ workflows:
               only:
                 - master
                 - /^release\/.*/
+
