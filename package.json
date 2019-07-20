@@ -1,7 +1,7 @@
 {
   "name": "@orquanet/simpleotp",
   "version": "0.3.3",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.0",
     "@babel/plugin-proposal-export-default-from": "^7.5.2"
