@@ -82,6 +82,12 @@ jobs:
       - run:
           name: Version release
           command: npm version from-git
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/.npmrc
+            - run:
+                name: Publish package
+                command: npm publish --tag $(jq -r '.version' package.json |tr -d '\n') --scope public
 
 workflows:
   version: 2

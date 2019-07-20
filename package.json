@@ -1,5 +1,5 @@
 {
-  "name": "@xa/simpleotp",
+  "name": "@orquanet/simpleotp",
   "version": "0.3.3",
   "private": true,
   "dependencies": {
