@@ -80,14 +80,19 @@ jobs:
             git config --global user.email $PROJECT_GIT_BUILDER
             git config --global user.name $PROJECT_GIT_NAME
       - run:
+          name: dist
+          command: npm run dist
+      - run:
+          working_directory: ~/repo/dist
           name: Version release
           command: npm version from-git
       - run:
           name: Authenticate with registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
       - run:
+          working_directory: ~/repo/dist
           name: Publish package
-          command: npm publish --tag v-$(jq -r '.version' package.json |tr -d '\n') --scope public
+          command: npm publish --tag v-$(jq -r '.version' package.json |tr -d '\n') --access public
 
 workflows:
   version: 2
