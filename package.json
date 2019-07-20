@@ -2,6 +2,7 @@
   "name": "@orquanet/simpleotp",
   "version": "0.3.3",
   "private": false,
+  "description": "OTP implementation according to rfc 4996 and rfc 6238",
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.0",
     "@babel/plugin-proposal-export-default-from": "^7.5.2"
