@@ -139,7 +139,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^[0-9]+\.[0-9]+\.[0-9]+$/
+              only: /.*/
       - test:
           requires:
             - build
@@ -147,7 +147,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+              only: /.*/
       - audit:
           requires:
             - build
@@ -155,7 +155,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+              only: /.*/
       - deploy:
           requires:
             - test
@@ -164,4 +164,4 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
+              only: /.*/
