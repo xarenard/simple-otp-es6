@@ -19,7 +19,7 @@
     "clean": "rimraf dist",
     "clean-doc": "rimraf docs",
     "clean-all": "npm run clean && npm run clean-doc",
-    "dist": "npm run clean && npm run build && npm test && npm run lint && npm run build & cp package.json dist/ && cp README.md dist/",
+    "dist": "npm run clean && npm run build && npm test && npm run lint && cp package.json dist/ && cp README.md dist/",
     "audit": "./node_modules/.bin/audit-ci --config audit-ci.json"
   },
   "devDependencies": {
